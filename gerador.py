@@ -2,7 +2,7 @@ import os
 
 
 inps = [
-(30000,500),
+(30000,100),
 (30000,1000),
 (30000,10000),
 (35000,500),
@@ -20,6 +20,5 @@ inps = [
 (100000,1000),
 ]
 for e in inps:
-     print('oi')
      os.system('./gerador {} {}'.format(e[0],e[1]))
 #os.system('./gerador {} {}'.format(1000,5))

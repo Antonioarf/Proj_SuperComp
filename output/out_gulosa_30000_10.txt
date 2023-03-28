@@ -1,0 +1,6 @@
+Time: 14694152
+max 45
+N_filmes 30000
+N_cat10
+TAMANHO 45
+TEMPO: 10
