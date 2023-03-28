@@ -1,0 +1,25 @@
+Time: 501508
+max 18
+N_filmes 1000
+N_cat5
+MAXIMO 18
+TAMANHO 18
+ID 733 Comeco 0, fim:0 ,Cat: 3
+ID 91 Comeco 0, fim:1 ,Cat: 4
+ID 553 Comeco 1, fim:1 ,Cat: 3
+ID 235 Comeco 1, fim:2 ,Cat: 3
+ID 834 Comeco 2, fim:3 ,Cat: 4
+ID 238 Comeco 3, fim:4 ,Cat: 4
+ID 417 Comeco 4, fim:5 ,Cat: 5
+ID 18 Comeco 5, fim:6 ,Cat: 5
+ID 330 Comeco 6, fim:7 ,Cat: 1
+ID 205 Comeco 7, fim:8 ,Cat: 1
+ID 901 Comeco 8, fim:9 ,Cat: 4
+ID 933 Comeco 9, fim:10 ,Cat: 1
+ID 35 Comeco 10, fim:12 ,Cat: 5
+ID 285 Comeco 12, fim:14 ,Cat: 2
+ID 652 Comeco 14, fim:15 ,Cat: 5
+ID 388 Comeco 15, fim:17 ,Cat: 2
+ID 549 Comeco 17, fim:19 ,Cat: 2
+ID 894 Comeco 19, fim:21 ,Cat: 2
+TEMPO: 21

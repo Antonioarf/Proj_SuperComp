@@ -1,0 +1,45 @@
+Time: 741029
+max 2471
+N_filmes 1400
+N_cat70
+MAXIMO 2471
+TAMANHO 38
+ID 648 Comeco 0, fim:0 ,Cat: 41
+ID 631 Comeco 0, fim:1 ,Cat: 32
+ID 1320 Comeco 1, fim:1 ,Cat: 5
+ID 1263 Comeco 1, fim:2 ,Cat: 40
+ID 1115 Comeco 2, fim:3 ,Cat: 32
+ID 131 Comeco 3, fim:3 ,Cat: 7
+ID 103 Comeco 3, fim:4 ,Cat: 45
+ID 1025 Comeco 4, fim:4 ,Cat: 32
+ID 1007 Comeco 4, fim:5 ,Cat: 26
+ID 203 Comeco 5, fim:5 ,Cat: 36
+ID 1101 Comeco 5, fim:6 ,Cat: 54
+ID 42 Comeco 6, fim:7 ,Cat: 48
+ID 219 Comeco 7, fim:7 ,Cat: 22
+ID 85 Comeco 7, fim:8 ,Cat: 58
+ID 990 Comeco 8, fim:9 ,Cat: 39
+ID 1090 Comeco 9, fim:9 ,Cat: 53
+ID 679 Comeco 9, fim:10 ,Cat: 23
+ID 1208 Comeco 10, fim:11 ,Cat: 38
+ID 609 Comeco 11, fim:11 ,Cat: 7
+ID 276 Comeco 11, fim:11 ,Cat: 56
+ID 34 Comeco 11, fim:11 ,Cat: 9
+ID 238 Comeco 11, fim:12 ,Cat: 9
+ID 1044 Comeco 12, fim:13 ,Cat: 66
+ID 738 Comeco 13, fim:13 ,Cat: 65
+ID 1262 Comeco 13, fim:14 ,Cat: 12
+ID 435 Comeco 14, fim:15 ,Cat: 14
+ID 975 Comeco 15, fim:16 ,Cat: 8
+ID 159 Comeco 16, fim:16 ,Cat: 53
+ID 1273 Comeco 16, fim:17 ,Cat: 3
+ID 540 Comeco 17, fim:18 ,Cat: 37
+ID 879 Comeco 18, fim:19 ,Cat: 60
+ID 1071 Comeco 19, fim:20 ,Cat: 42
+ID 769 Comeco 20, fim:21 ,Cat: 68
+ID 2 Comeco 21, fim:21 ,Cat: 70
+ID 899 Comeco 21, fim:22 ,Cat: 59
+ID 940 Comeco 22, fim:22 ,Cat: 6
+ID 872 Comeco 22, fim:23 ,Cat: 67
+ID 884 Comeco 23, fim:24 ,Cat: 16
+TEMPO: 24

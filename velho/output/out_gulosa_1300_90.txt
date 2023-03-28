@@ -1,0 +1,37 @@
+Time: 692893
+max 4345
+N_filmes 1300
+N_cat90
+MAXIMO 4345
+TAMANHO 30
+ID 427 Comeco 0, fim:1 ,Cat: 9
+ID 1190 Comeco 1, fim:1 ,Cat: 49
+ID 15 Comeco 1, fim:2 ,Cat: 84
+ID 105 Comeco 2, fim:3 ,Cat: 76
+ID 1239 Comeco 3, fim:4 ,Cat: 6
+ID 868 Comeco 4, fim:5 ,Cat: 16
+ID 121 Comeco 5, fim:6 ,Cat: 81
+ID 1110 Comeco 6, fim:7 ,Cat: 23
+ID 754 Comeco 7, fim:8 ,Cat: 3
+ID 729 Comeco 8, fim:9 ,Cat: 27
+ID 637 Comeco 9, fim:10 ,Cat: 41
+ID 241 Comeco 10, fim:11 ,Cat: 43
+ID 1 Comeco 11, fim:12 ,Cat: 65
+ID 836 Comeco 12, fim:12 ,Cat: 57
+ID 767 Comeco 12, fim:13 ,Cat: 55
+ID 197 Comeco 13, fim:14 ,Cat: 27
+ID 859 Comeco 14, fim:15 ,Cat: 34
+ID 20 Comeco 15, fim:15 ,Cat: 66
+ID 342 Comeco 15, fim:15 ,Cat: 11
+ID 995 Comeco 15, fim:16 ,Cat: 56
+ID 336 Comeco 16, fim:17 ,Cat: 30
+ID 1246 Comeco 17, fim:18 ,Cat: 39
+ID 1191 Comeco 18, fim:19 ,Cat: 5
+ID 237 Comeco 19, fim:20 ,Cat: 5
+ID 149 Comeco 20, fim:21 ,Cat: 58
+ID 910 Comeco 21, fim:21 ,Cat: 24
+ID 799 Comeco 21, fim:22 ,Cat: 67
+ID 798 Comeco 22, fim:23 ,Cat: 17
+ID 190 Comeco 23, fim:23 ,Cat: 64
+ID 255 Comeco 23, fim:25 ,Cat: 78
+TEMPO: 25
