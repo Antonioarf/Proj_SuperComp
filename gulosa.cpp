@@ -79,7 +79,7 @@ int main(int argc, char* argv[])
     cout << "Time: " << delta << "\n";
     cout << "max " << max_filmes << "\n";
     cout << "N_filmes " << n_filmes << "\n";
-    cout << "N_cat" << n_cat << "\n";
+    cout << "N_cat " << n_cat << "\n";
     cout << "TAMANHO " << agenda.size() << "\n";
 
     //conta = 0;

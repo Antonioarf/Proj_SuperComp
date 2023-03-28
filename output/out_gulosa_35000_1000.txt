@@ -1,6 +1,6 @@
-Time: 19086679
+Time: 19313919
 max 495637
 N_filmes 35000
-N_cat1000
+N_cat 1000
 TAMANHO 227
 TEMPO: 24
