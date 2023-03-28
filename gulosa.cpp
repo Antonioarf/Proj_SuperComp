@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
     //cout<< "---------------------\n";
     int tempo_util = 0;
     for (auto& x : agenda){
-    cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
+    //cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
     tempo_util += abs(x.comeco - x.fim);
     }
     cout << "TEMPO: " << tempo_util << "\n";
