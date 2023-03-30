@@ -1,0 +1,6 @@
+Time: 19837323
+max 20
+N_filmes 50000
+N_cat 6
+TAMANHO 20
+TEMPO: 20

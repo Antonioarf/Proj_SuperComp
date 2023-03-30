@@ -26,8 +26,6 @@ int main(int argc, char* argv[])
     vector<int> limites;
     int  n_cat;
     int n_filmes;
-    int melhor_score = 0;
-    int amostra = 50000
 
     cin >> n_filmes >> n_cat;
 
@@ -58,12 +56,8 @@ int main(int argc, char* argv[])
         filmes.push_back({com,fi,c,conta});
         conta++;
     }
-///// COMEÇA O ALGORITOMO PROPRIAMENTE
-    random_shuffle(filmes.begin(), filmes.end());
-    
 
-    //sort(filmes.begin(), filmes.end(), ordena);
-
+    sort(filmes.begin(), filmes.end(), ordena);
 
     int hora_atual=0;
     for (auto& x : filmes){
@@ -85,8 +79,7 @@ int main(int argc, char* argv[])
     cout << "Time: " << delta << "\n";
     cout << "max " << max_filmes << "\n";
     cout << "N_filmes " << n_filmes << "\n";
-    cout << "N_cat" << n_cat << "\n";
-    cout << "MAXIMO " << max_filmes << "\n";
+    cout << "N_cat " << n_cat << "\n";
     cout << "TAMANHO " << agenda.size() << "\n";
 
     //conta = 0;

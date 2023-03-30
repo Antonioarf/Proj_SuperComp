@@ -1,24 +1,12 @@
 import os
+import itertools
+import numpy as np
 
-
-inps = [
-(30000,100),
-(30000,1000),
-(30000,10000),
-(35000,500),
-(35000,1000),
-(35000,10000),
-(40000,5000),
-(40000,1000),
-(40000,10000),
-(45000,5000),
-(45000,1000),
-(45000,10000),
-(50000,5000),
-(50000,1000),
-(50000,10000),
-(100000,1000),
-]
+filmes =np.arange(45000, 62500, 2500).tolist()
+cats = list(range(5,26))
+inps = itertools.product(filmes,cats)
+os.system(f'g++ -Wall -O3 gerador.cpp -o gerador')
+print(len(cats)*len(filmes))
 for e in inps:
      os.system('./gerador {} {}'.format(e[0],e[1]))
 #os.system('./gerador {} {}'.format(1000,5))

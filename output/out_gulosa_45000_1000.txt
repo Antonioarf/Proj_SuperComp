@@ -1,6 +1,0 @@
-Time: 24539998
-max 482303
-N_filmes 45000
-N_cat 1000
-TAMANHO 298
-TEMPO: 24

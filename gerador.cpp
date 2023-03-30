@@ -33,6 +33,8 @@ int main(int argc, char *argv[]) {
         int hora_inicio = distribution_hr(generator);
         double dif_media = distribution_dif(generator);
         int hora_fim = ((int)hora_inicio + (int)round(dif_media)) % 24;
+        if ((hora_fim <= hora_inicio) ||(hora_fim <0))
+        hora_fim = hora_inicio+1;
         int categoria = distribution_cat(generator);
 
         inputFile << hora_inicio << " " << hora_fim << " " << categoria << endl;

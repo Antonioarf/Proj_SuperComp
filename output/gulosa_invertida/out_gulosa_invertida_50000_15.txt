@@ -1,0 +1,6 @@
+Time: 20020525
+max 99
+N_filmes 50000
+N_cat 15
+TAMANHO 5
+TEMPO: 24

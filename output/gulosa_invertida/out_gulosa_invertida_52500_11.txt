@@ -1,0 +1,6 @@
+Time: 20875158
+max 86
+N_filmes 52500
+N_cat 11
+TAMANHO 5
+TEMPO: 24
