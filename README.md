@@ -198,15 +198,12 @@ Em um primeiro momento foi feita a analise isolando as possíveis quantidades de
 Com esses dois primeiros gráficos notamos que a heurística gulosa foi muito mais impactada pela priorização de filmes mais curtos feita inicialmente, enquanto o algorítimo aleatorizado pouco sentiu diferença nessa questão.    
 
 <img src="imgs/b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png" width="50%" height="50%">
-
-![fed8477b-6ffe-48b8-86cf-5bc040604da0.png](imgs/fed8477b-6ffe-48b8-86cf-5bc040604da0.png)
+<img src="imgs/fed8477b-6ffe-48b8-86cf-5bc040604da0.png" width="50%" height="50%">
 
 Olhando agora para a saída criada por cada algoritmo, notamos que a heurística gulosa tem um desempenho muito bom no quesito tempo de tela, enquanto a heurística aleatorizada é beneficiada ao preferir filmes mais curtos, apesar de nos dois casos o numero de filmes escolhidos ser bem parecido.
 
-![d3d95932-20fa-48f7-91d6-1ad7777a016b.png](imgs/d3d95932-20fa-48f7-91d6-1ad7777a016b.png)
+<img src="imgs/d3d95932-20fa-48f7-91d6-1ad7777a016b.png" width="50%" height="50%">
+<img src="imgs/cf562be9-0b67-4d77-ac1f-734cb37c5730.png" width="50%" height="50%">
+<img src="imgs/imgs/54733485-2a91-4103-97d5-c8073cf81d46.png" width="50%" height="50%">
+<img src="imgs/20d2df64-7671-4504-8516-daf73126e4db.png" width="50%" height="50%">
 
-![cf562be9-0b67-4d77-ac1f-734cb37c5730.png](imgs/cf562be9-0b67-4d77-ac1f-734cb37c5730.png)
-
-![54733485-2a91-4103-97d5-c8073cf81d46.png](imgs/54733485-2a91-4103-97d5-c8073cf81d46.png)
-
-![20d2df64-7671-4504-8516-daf73126e4db.png](imgs/20d2df64-7671-4504-8516-daf73126e4db.png)
