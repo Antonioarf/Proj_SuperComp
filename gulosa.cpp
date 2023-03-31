@@ -58,7 +58,6 @@ int main(int argc, char* argv[])
     }
 
     sort(filmes.begin(), filmes.end(), ordena);
-
     int hora_atual=0;
     for (auto& x : filmes){
         if(x.comeco >= hora_atual){
@@ -71,7 +70,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    
+
     ///// FIM DO TIMER
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
