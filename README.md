@@ -197,7 +197,7 @@ Em um primeiro momento foi feita a analise isolando as possíveis quantidades de
 
 Com esses dois primeiros gráficos notamos que a heurística gulosa foi muito mais impactada pela priorização de filmes mais curtos feita inicialmente, enquanto o algorítimo aleatorizado pouco sentiu diferença nessa questão
 
-![b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png](imgs/b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png | width=“50%” height="50%".)
+![b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png](imgs/b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png | width=100 h)
 
 ![fed8477b-6ffe-48b8-86cf-5bc040604da0.png](imgs/fed8477b-6ffe-48b8-86cf-5bc040604da0.png)
 
