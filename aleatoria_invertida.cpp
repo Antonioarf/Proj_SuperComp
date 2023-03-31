@@ -84,26 +84,15 @@ int main(int argc, char* argv[])
     ///// FIM DO TIMER
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
-    
-    //----------------------------------------------------//
-    ///// Output
+
     cout << "Time: " << delta << "\n";
     cout << "max " << max_filmes << "\n";
     cout << "N_filmes " << n_filmes << "\n";
     cout << "N_cat " << n_cat << "\n";
     cout << "TAMANHO " << agenda.size() << "\n";
 
-    //conta = 0;
-    //while (conta< n_cat+1)
-    //{cout << "Cat " << conta << " limite "<< limites[conta]<< " usados "<< cats_gastas[conta]<< "\n";
-    //conta++;}
-
-    // for (auto& x : filmes)cout << nums.size();
-    // cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
-    //cout<< "---------------------\n";
     int tempo_util = 0;
     for (auto& x : agenda){
-    //cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
     tempo_util += abs(x.comeco - x.fim);
     }
     cout << "TEMPO: " << tempo_util << "\n";
