@@ -16,7 +16,7 @@
 
 Para a resolução do problema, foi primeiro desenvolvido um código genérico para tratar as entradas e preparar as estruturas de dados necessárias para a resolução.
 
-Primeiramente foram criadas as variáveis para guardar todos os filmes possíveis `filmes`,  `agenda` para guardar os filmes selecionados pelo algorítimo e `limities` e `cat_gastas`,  com quantos filmes são permitidos por categoria e quantos desses *slots* ja foram utilizados respectivamente
+Primeiramente foram criadas as variáveis para guardar todos os filmes possíveis `filmes`,  `agenda` para guardar os filmes selecionados pelo algorítimo e `limities` e `cat_gastas`,  com quantos filmes são permitidos por categoria e quantos desses *slots* ja foram utilizados respectivamente.
 
 ```cpp
 vector<filme> filmes;
@@ -130,7 +130,7 @@ double numero;
 
 Para o algorítimo ter mais maleabilidade para percorrer o vetor, o *loop for* deixou de iterar sobre itens no vetor, como era na heurística gulosa, e passou a varrer indicies de 0 até a quantidade de filmes menos um.
 
-O *loop* principal também foi alterado para gerar um `numero` aleatório, com 25% de chance de disparar uma mutação, descrita no primeiro *if*, que consiste em um salto para qualquer filme ainda não contemplado no vetor de filmes 
+O *loop* principal também foi alterado para gerar um `numero` aleatório, com 25% de chance de disparar uma mutação, descrita no primeiro *if*, que consiste em um salto para qualquer filme ainda não contemplado no vetor de filmes.
 
 ```cpp
 for(int i=0; i < (int)filmes.size(); i++){
@@ -171,7 +171,7 @@ A análise feita pelo *valgrind* na heurística gulosa apontou como maior gargal
 206,470,366  => ???:0x0000000000109180 (180,000x)
 ```
 
-A implementação aleatorizada além de carregar os gargalos da versão gulosa, teve mais problemas com a mudança do *loop for* principal, que deixou de iterar diretamente sobre o vetor e passou a se basear em marcador de indicie, gerando muitos acessos a memoria para buscar esse marcador e pontos do vetor relativos a ele 
+A implementação aleatorizada além de carregar os gargalos da versão gulosa, teve mais problemas com a mudança do *loop for* principal, que deixou de iterar diretamente sobre o vetor e passou a se basear em marcador de indicie, gerando muitos acessos a memoria para buscar esse marcador e pontos do vetor relativos a ele. 
 
 ```cpp
 1,255,210      for(int i=0; i < (int)filmes.size(); i++){
@@ -195,9 +195,9 @@ A implementação aleatorizada além de carregar os gargalos da versão gulosa, 
 
 Em um primeiro momento foi feita a analise isolando as possíveis quantidades de filmes e de categorias, obtendo inicialmente gráficos do tempo gasto total para cada quantidade de filmes independente do numero de categorias, e depois para cada quantidade de categorias independente do numero de filmes.
 
-Com esses dois primeiros gráficos notamos que a heurística gulosa foi muito mais impactada pela priorização de filmes mais curtos feita inicialmente, enquanto o algorítimo aleatorizado pouco sentiu diferença nessa questão
+Com esses dois primeiros gráficos notamos que a heurística gulosa foi muito mais impactada pela priorização de filmes mais curtos feita inicialmente, enquanto o algorítimo aleatorizado pouco sentiu diferença nessa questão.    
 
-![b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png](imgs/b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png | width=100 h)
+<img src="imgs/b0ea4e48-8ba6-4667-942d-f6256d1ff5a2.png" width="50%" height="50%">
 
 ![fed8477b-6ffe-48b8-86cf-5bc040604da0.png](imgs/fed8477b-6ffe-48b8-86cf-5bc040604da0.png)
 
