@@ -4,7 +4,7 @@ import time
 
 
 entries = os.listdir('input/')
-algotimo = 'gulosa_invertida'
+algotimo = 'aleatoria_invertida'
 os.system(f'g++ -Wall -O3 {algotimo}.cpp -o {algotimo}')
 for inp in entries:
     with open(f'input/{inp}') as f:

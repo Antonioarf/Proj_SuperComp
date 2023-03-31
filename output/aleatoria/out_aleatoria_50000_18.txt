@@ -1,0 +1,6 @@
+Time: 18843131
+max 172
+N_filmes 50000
+N_cat 18
+TAMANHO 4
+TEMPO: 7

@@ -1,4 +1,5 @@
 #include<iostream>
+#include <iterator>
 #include<vector>
 #include<algorithm>
 #include <random>
@@ -58,18 +59,28 @@ int main(int argc, char* argv[])
     }
 
     sort(filmes.begin(), filmes.end(), ordena);
-
+    unsigned seed = 10;
+    default_random_engine generator (seed);
+    uniform_real_distribution<double> distribution(0.0,1.0);
     int hora_atual=0;
-    for (auto& x : filmes){
-        if(x.comeco >= hora_atual){
-            if (cats_gastas[x.cat]+1 <= limites[x.cat]){
-                cats_gastas[x.cat]++;
-                hora_atual= x.fim;
-                agenda.push_back(x);
+    double numero;
+
+    for(int i=0; i < (int)filmes.size(); i++){
+        numero =distribution(generator);
+        if (numero >= 0.75){
+            i+=(rand() % ((int)filmes.size())-i-1 );
+        }
+        if(filmes[i].comeco >= hora_atual){
+            if (cats_gastas[filmes[i].cat]+1 <= limites[filmes[i].cat]){
+                cats_gastas[filmes[i].cat]++;
+                hora_atual= filmes[i].fim;
+                agenda.push_back(filmes[i]);
             }
 
         }
     }
+
+
     ///// FIM DO TIMER
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
@@ -92,7 +103,7 @@ int main(int argc, char* argv[])
     //cout<< "---------------------\n";
     int tempo_util = 0;
     for (auto& x : agenda){
-    cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
+    //cout <<"ID " << x.id <<" Comeco " << x.comeco << ", fim:" << x.fim << " ,Cat: "<< x.cat <<"\n";
     tempo_util += abs(x.comeco - x.fim);
     }
     cout << "TEMPO: " << tempo_util << "\n";
