@@ -17,11 +17,12 @@ bool ordena(filme f1,filme f2){
     return f1.comeco < f2.comeco; 
 }
 
+
 int main(int argc, char* argv[])
 {
     /////set time
     auto before = std::chrono::high_resolution_clock::now();
-
+    
     vector<filme> filmes;
     vector<filme> agenda;
     vector<int> limites;

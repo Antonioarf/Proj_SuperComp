@@ -1,6 +1,5 @@
 import os
 import subprocess
-import time
 
 
 entries = os.listdir('input/')
@@ -14,4 +13,3 @@ for inp in entries:
     with open('output/{}/out_{}_{}.txt'.format(algotimo,algotimo,inp[6:-4]), 'w') as f:
         f.write(proc.stdout)
         
-
