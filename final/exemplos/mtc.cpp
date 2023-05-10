@@ -12,7 +12,7 @@ int main()
     {
         // cd Declare a seed for each thread
         unsigned my_seed = omp_get_thread_num() + time(NULL);
-
+        cout <<"SEED" << omp_get_thread_num << my_seed;
         // Create a random number generator for each thread
         default_random_engine generator(my_seed);
 
@@ -22,7 +22,7 @@ int main()
         // Count the number of points inside the circle for each thread
         #pragma omp for reduction(+:count)
         for (int i = 0; i < N; i++){
-            float x = distribution(generator); 
+            float x = .(generator); 
             float y = distribution(generator);
             if (x*x + y*y <= 1.0){count++;}
         }
