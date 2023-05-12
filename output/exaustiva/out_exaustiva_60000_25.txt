@@ -1,0 +1,10 @@
+input categoriasfoi 
+input filmes foi
+ordenou
+24 tamanho 60000
+Time: 793201995
+max 347
+N_filmes 60000
+N_cat 25
+TAMANHO 24
+TEMPO: 24
