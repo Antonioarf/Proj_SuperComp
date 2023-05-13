@@ -35,7 +35,7 @@ result knapSack(int horario, vector<int>& lim, vector <filme>& filmes){
         return knapSack(horario,lim, filmes);
     }
     
-    result rec;
+    result rec, rec2;
 
     #pragma omp parallel
     #pragma omp single
@@ -50,11 +50,14 @@ result knapSack(int horario, vector<int>& lim, vector <filme>& filmes){
             rec.horas += (f0.fim - f0.comeco);
             rec.quant +=1;
         }
-        #pragma omp task shared(rec)
+        #pragma omp task shared(rec2)
         {
-            rec = maximo(rec, knapSack(horario,lim, filmes));
+            rec2 = knapSack(horario,lim, filmes);
         }
         #pragma omp taskwait
+        {
+            rec = maximo(rec, rec2);
+        }
     }
 
     return rec;
@@ -89,7 +92,6 @@ int main(int argc, char* argv[])
 
     }
     
-    cout << "input categoriasfoi \n";
     conta = 0;
     int com,fi,c;
     while(conta<n_filmes){
@@ -99,11 +101,8 @@ int main(int argc, char* argv[])
         filmes.push_back({com,fi,c,conta});
         conta++;
     }
-    cout << "input filmes foi\n";
 
-    sort(filmes.begin(), filmes.end(), ordena);
-    cout << "ordenou\n" << filmes[0].fim << " tamanho "<< filmes.size() << "\n";
-    
+    sort(filmes.begin(), filmes.end(), ordena);    
     result resultado = knapSack(10000,limites ,filmes);
 
 

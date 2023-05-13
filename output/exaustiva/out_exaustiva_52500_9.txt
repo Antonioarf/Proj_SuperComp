@@ -1,8 +1,4 @@
-input categoriasfoi 
-input filmes foi
-ordenou
-24 tamanho 52500
-Time: 612753939
+Time: 540399297
 max 33
 N_filmes 52500
 N_cat 9

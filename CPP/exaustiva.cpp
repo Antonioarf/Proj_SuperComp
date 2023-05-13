@@ -79,7 +79,6 @@ int main(int argc, char* argv[])
 
     }
     
-    cout << "input categoriasfoi \n";
     conta = 0;
     int com,fi,c;
     while(conta<n_filmes){
@@ -89,11 +88,8 @@ int main(int argc, char* argv[])
         filmes.push_back({com,fi,c,conta});
         conta++;
     }
-    cout << "input filmes foi\n";
 
-    sort(filmes.begin(), filmes.end(), ordena);
-    cout << "ordenou\n" << filmes[0].fim << " tamanho "<< filmes.size() << "\n";
-    
+    sort(filmes.begin(), filmes.end(), ordena);    
     result resultado = knapSack(10000,limites ,filmes);
 
 
