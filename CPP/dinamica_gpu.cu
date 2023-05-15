@@ -29,8 +29,12 @@ while(conta<n_cat){
     }
 
 conta = 0;
+int i1, i2, i3;
 while(conta<n_filmes){
-        cin >> start_times[conta] >> end_times[conta] >> categories[conta];
+        cin >> i1 >> i2 >> i3;
+        start_times[conta] = i1;
+        end_times[conta] = i2;
+        categories[conta] = i3;
         conta++;
     }
 

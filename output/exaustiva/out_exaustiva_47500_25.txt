@@ -1,4 +1,4 @@
-Time: 450239715
+Time: 389440247
 max 359
 N_filmes 47500
 N_cat 25
