@@ -10,7 +10,7 @@ algos  = ["dinamica_gpu","exaustiva_paralela","exaustiva","aleatoria","aleatoria
 #algos = ["exaustiva_paralela"]
 output=""
 for algo in algos:
-    print(f"Compilando {algo}")
+    # print(f"Compilando {algo}")
     output+=f"Rodando {algo}\n"
     start = time.time()
     if algo == "exaustiva" or algo == "exaustiva_paralela":
@@ -20,7 +20,7 @@ for algo in algos:
     else:
         os.system(f'g++ -Wall -O3 {cpps}/{algo}.cpp -o {pai}/CPP/{algo}')
     t1 = time.time()
-    print(f"Tempo de compilação: {t1-start}")
+    # print(f"Tempo de compilação: {t1-start}")
     output+=f"Tempo de compilação: {t1-start}\n"
     print(f"Executando {algo}")
     for inp in entries:

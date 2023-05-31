@@ -1,4 +1,4 @@
-Time: 28364927
+Time: 23981863
 max 13
 N_filmes 57500
 N_cat 5
