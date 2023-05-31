@@ -1,18 +1,21 @@
+Rodando dinamica_gpu
+Tempo de compilação: 0.0008268356323242188
+Tempo de execução: 20.14524483680725
 Rodando exaustiva_paralela
-Tempo de compilação: 0.7856714725494385
-Tempo de execução: 23.92242407798767
+Tempo de compilação: 0.7041172981262207
+Tempo de execução: 17.69314455986023
 Rodando exaustiva
-Tempo de compilação: 0.7773478031158447
-Tempo de execução: 81.83560061454773
+Tempo de compilação: 0.6815104484558105
+Tempo de execução: 70.05068349838257
 Rodando aleatoria
-Tempo de compilação: 0.7812685966491699
-Tempo de execução: 4.042745113372803
+Tempo de compilação: 0.6806578636169434
+Tempo de execução: 3.253711223602295
 Rodando aleatoria_invertida
-Tempo de compilação: 0.8001096248626709
-Tempo de execução: 3.9856626987457275
+Tempo de compilação: 0.6692931652069092
+Tempo de execução: 3.2393176555633545
 Rodando gulosa
-Tempo de compilação: 0.7675771713256836
-Tempo de execução: 3.551610231399536
+Tempo de compilação: 0.6695084571838379
+Tempo de execução: 2.9956700801849365
 Rodando gulosa_invertida
-Tempo de compilação: 0.7854485511779785
-Tempo de execução: 3.551022529602051
+Tempo de compilação: 0.6600971221923828
+Tempo de execução: 2.99753475189209
