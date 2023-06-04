@@ -1,6 +1,0 @@
-Time: 385348618
-max 306
-N_filmes 47500
-N_cat 23
-TAMANHO 24
-TEMPO: 24

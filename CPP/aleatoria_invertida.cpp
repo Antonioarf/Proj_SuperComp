@@ -85,15 +85,10 @@ int main(int argc, char* argv[])
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
 
-    cout << "Time: " << delta << "\n";
-    cout << "max " << max_filmes << "\n";
-    cout << "N_filmes " << n_filmes << "\n";
-    cout << "N_cat " << n_cat << "\n";
-    cout << "TAMANHO " << agenda.size() << "\n";
-
     int tempo_util = 0;
     for (auto& x : agenda){
     tempo_util += abs(x.comeco - x.fim);
     }
-    cout << "TEMPO: " << tempo_util << "\n";
+    cout << delta<< " , " << n_filmes<< " , " << n_cat<< " , "<< agenda.size() << " , "<< tempo_util<< "\n";
+
 }

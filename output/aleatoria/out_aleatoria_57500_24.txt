@@ -1,6 +1,0 @@
-Time: 21102730
-max 259
-N_filmes 57500
-N_cat 24
-TAMANHO 3
-TEMPO: 3

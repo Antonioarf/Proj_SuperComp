@@ -1,6 +1,0 @@
-Time: 17609380
-max 13
-N_filmes 50000
-N_cat 5
-TAMANHO 13
-TEMPO: 13

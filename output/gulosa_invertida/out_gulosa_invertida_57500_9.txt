@@ -1,6 +1,0 @@
-Time: 20492907
-max 50
-N_filmes 57500
-N_cat 9
-TAMANHO 5
-TEMPO: 24
