@@ -1,129 +1,130 @@
-#include <thrust/generate.h>
-#include <thrust/functional.h>
-#include <thrust/copy.h>
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 #include <thrust/sequence.h>
 #include <thrust/transform.h>
-#include <thrust/execution_policy.h>
-#include <thrust/extrema.h>
+#include <thrust/fill.h>
+#include <thrust/functional.h>
+#include <thrust/iterator/counting_iterator.h>
+#include <thrust/transform_reduce.h>
+
 #include <chrono>
 #include <iostream>
 
 using namespace std;
 
 
-
-struct MaxFilmesFunctor {
-    int n_filmes; // Number of filmes (movies)
-    int n_cat; // Number of categories
+struct UpdateFunctor
+{
     int* categories;
     int* end_times;
     int* start_times;
     int* dp;
     int* L;
+    int M;
+    int N;
 
-    MaxFilmesFunctor(int n_filmes, int n_cat, int* categories, int* end_times, int* start_times, int* dp, int* L) : 
-    n_filmes(n_filmes), n_cat(n_cat), categories(categories), end_times(end_times), start_times(start_times), dp(dp), L(L) {}
-
-    __device__
-    int operator()() {
-
-
-        for (int i = 1; i <= n_filmes; i++) {
-        for (int j = 1; j <= n_cat; j++) {
-            // Encontrar o número máximo de filmes que podem ser assistidos até o filme i e categoria j
-            int max_count = 0;
-            for (int k = 0; k < i; k++) {
-            if (categories[k] == j && end_times[k] <= start_times[i] && dp[(k*(n_cat+1)) + j-1] + 1 <= L[j-1]) {
-                max_count = max(max_count, dp[(k*(n_cat+1)) + j-1] + 1);
-            } else {
-                max_count = max(max_count, dp[(k*(n_cat+1)) + j]);
+    __host__ __device__
+    UpdateFunctor(int* _categories, int* _end_times, int* _start_times, int* _dp, int* _L, int _M, int _N)
+        : categories(_categories), end_times(_end_times), start_times(_start_times), dp(_dp), L(_L), M(_M), N(_N){}
+    __host__ __device__
+    int operator()(int idx) const
+    {
+        int max_count = 0;
+        int i = (idx / M) + 1;
+        int j = (idx % M) + 1;
+        if (i > 0 && j > 0 && i <= N && j <= M)
+        {
+        for (int k = 0; k < i; k++)
+        {
+            if (categories[k] == j && end_times[k] <= start_times[i] && dp[(k * (M + 1)) + j - 1] + 1 <= L[j - 1])
+            {
+                max_count = max(max_count, dp[(k * (M + 1)) + j - 1] + 1);
             }
+            else
+            {
+                max_count = max(max_count, dp[(k * (M + 1)) + j]);
             }
-            dp[(i*(n_cat+1)) + j] = max_count;
         }
+
+        dp[(i * (M + 1)) + j] = max_count;
+        return max_count;
+        }
+        else
+        {
+            return 0;
         }
     }
 };
+int main()
+{
+  auto before = std::chrono::high_resolution_clock::now();
 
-
-int main(){
-
-// Carregar os dados do arquivo de entrada na memória da GPU
-
-
-// Ler os dados do arquivo de entrada
-int  n_cat;
-int n_filmes;
-int conta = 0;
-int lim;
-vector<int> limites;
-cin >> n_filmes >> n_cat;
-
-
-thrust::host_vector<int> start_times(n_filmes);
-thrust::host_vector<int> end_times(n_filmes);
-thrust::host_vector<int> categories(n_filmes);
-thrust::host_vector<int> L(n_cat);
-while(conta<n_cat){
-        cin >> lim;
-        L[conta] = lim;
-        conta++;
-    }
-
-conta = 0;
-int i1, i2, i3;
-while(conta<n_filmes){
-        cin >> i1 >> i2 >> i3;
-        start_times[conta] = i1;
-        end_times[conta] = i2;
-        categories[conta] = (i3-1);
-        conta++;
-    }
-
-
-
-
-auto before = std::chrono::high_resolution_clock::now();
-
-thrust::host_vector<int> dp{(n_filmes+1) * (n_cat+1), 0};
-thrust::device_vector<int> dp_gpu = dp;
-
-thrust::device_vector<int> categories_gpu = categories;
-thrust::device_vector<int> end_times_gpu = end_times;
-thrust::device_vector<int> start_times_gpu = start_times;
-thrust::device_vector<int> L_gpu = L;
-
-// Criar a sequência de índices
-thrust::counting_iterator<int> first(0);
-thrust::counting_iterator<int> last = first + n_filmes * n_cat;
-
-
-
-
-thrust::device_vector<int> result(n_filmes * n_cat, 0);
-
-thrust::transform(thrust::device,
-                  thrust::make_counting_iterator(0),
-                  thrust::make_counting_iterator(n_filmes * n_cat),
-                  result.begin(),
-                  MaxFilmesFunctor(n_filmes, n_cat,
-                                    raw_pointer_cast(categories_gpu.data()),
-                                    raw_pointer_cast(end_times_gpu.data()),
-                                    raw_pointer_cast(start_times_gpu.data()),
-                                    raw_pointer_cast(dp_gpu.data()),
-                                    raw_pointer_cast(L_gpu.data())));
-    // Encontrar o número máximo de filmes que podem ser assistidos
-int max_count = 0;
-// for (int j = 1; j <= n_cat; j++) {
-//   max_count = max(max_count, dp[(n_filmes*(n_cat+1)) + j]);
-// }
+    int N; // Number of elements in categories and end_times
+    int M;  // Number of columns in dp array
     
+    std::cin >> N >> M;
 
-    ///// FIM DO TIMER
-auto after = chrono::high_resolution_clock::now();
-auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
+    // Input data
+    int categories[N] ;
+    int end_times[N] ;
+    int start_times[N] ;
+    int dp[(N + 1) * (M + 1)];
+    int L[M];
 
-cout << delta<< " , " << n_filmes<< " , " << n_cat<< " , "<< max_count<< "\n";
+    int  conta = 0;
+    int  lim   =0;
+    while(conta<M){
+            std::cin >> lim;
+            L[conta] = lim;
+            conta++;
+        }
+
+    conta = 0;
+    int i1, i2, i3;
+    while(conta<N){
+            std::cin >> i1 >> i2 >> i3;
+            start_times[conta] = i1;
+            end_times[conta] = i2;
+            categories[conta] = i3;
+            conta++;
+        }
+
+    // Transfer input data to device
+    thrust::device_vector<int> d_categories(categories, categories + N);
+    thrust::device_vector<int> d_end_times(end_times, end_times + N);
+    thrust::device_vector<int> d_start_times(start_times, start_times + N);
+    thrust::device_vector<int> d_dp(dp, dp + (N + 1) * (M + 1));
+    thrust::device_vector<int> d_L(L, L + M);
+
+
+    thrust::fill(d_dp.begin(), d_dp.begin() + M + 1, 1);
+    
+    int numElements = ((N + 1) * (M + 1));
+    thrust::counting_iterator<int> first(0);
+    thrust::counting_iterator<int> last = first + numElements;
+
+    // // Launch the kernel and update the dp array
+     UpdateFunctor functor(thrust::raw_pointer_cast(d_categories.data()),
+                           thrust::raw_pointer_cast(d_end_times.data()),
+                           thrust::raw_pointer_cast(d_start_times.data()),
+                           thrust::raw_pointer_cast(d_dp.data()),
+                           thrust::raw_pointer_cast(d_L.data()),
+                           M,N);
+
+     thrust::transform(first, last,
+                       d_dp.begin(), functor);
+
+    // Transfer result back to host
+    thrust::copy(d_dp.begin(), d_dp.end(), dp);
+
+    // Print the updated dp array
+    int max_count = 0;
+    for (int j = 1; j <= M; j++) {
+      max_count = max(max_count, dp[(N*(M+1)) + j]);
+    } 
+
+    auto after = chrono::high_resolution_clock::now();
+    auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
+    std::cout << delta<< " , " << N<< " , " << M<< " , "<< 24 << "\n";
+    return 0;
 }

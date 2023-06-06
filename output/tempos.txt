@@ -1,14 +1,2 @@
-Rodando exaustiva
-Tempo de execução: 375.73911213874817
-Rodando exaustiva_paralela
-Tempo de execução: 266.9914183616638
-Rodando aleatoria
-Tempo de execução: 12.821690082550049
-Rodando aleatoria_invertida
-Tempo de execução: 11.828614473342896
-Rodando gulosa
-Tempo de execução: 11.037649393081665
-Rodando gulosa_invertida
-Tempo de execução: 11.300414323806763
 Rodando dinamica_gpu
-Tempo de execução: 75.54806876182556
+Tempo de execução: 0.12018918991088867

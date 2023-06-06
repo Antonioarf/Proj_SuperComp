@@ -2,8 +2,8 @@ import os
 import itertools
 import numpy as np
 
-filmes =np.arange(10000, 100000, 5000).tolist()
-cats = list(range(5,41))
+filmes =np.arange(10000, 1005000, 5000).tolist()
+cats = list(range(10,41))
 inps = itertools.product(filmes,cats)
 os.system(f'g++ -Wall -O3 gerador.cpp -o gerador')
 print(len(cats)*len(filmes))
