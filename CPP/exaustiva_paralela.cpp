@@ -20,44 +20,45 @@ result maximo(result r1, result r2){
     // if (r1.horas >= r2.horas) {return r1;}
     else {return r2;}
 }
+
 bool ordena(filme f1,filme f2){ //invertendo pra facilitar o criterio de parada
     if (f1.fim ==f2.fim)
     return f1.comeco > f2.comeco;
     else
     return f1.fim > f2.fim; 
 }
-result knapSack(int horario, vector<int>& lim, vector <filme>& filmes){
-    
+
+result exaustiva(int horario, vector<int>& lim, vector <filme>& filmes){
     
     if (filmes.empty() || horario==0) return result ({0,0}); //nao tem nada pra colocar
-
     if (filmes[0].fim>horario || lim[filmes[0].cat]== 0 ){ //nao cabe ou por categoria ou por horario
-        // cout << "nao cabe\n" << filmes.size() << "\n";
         filmes.erase(filmes.begin());
-        return knapSack(horario,lim, filmes);
+        return exaustiva(horario,lim, filmes);
     }
-    result rec, rec2;
-            filme f0 = filmes[0];
-            filmes.erase(filmes.begin());
-            vector<int> lim0 = lim;
-            lim0[filmes[0].cat]-=1;
+    else {
+        filme f0 = filmes[0];
+        filmes.erase(filmes.begin());
+        vector<int> lim0 = lim;
+        lim0[filmes[0].cat]-=1;
 
-    #pragma omp parallel
-        {
-            #pragma omp task shared(rec)
+        result rec, rec2;
+        #pragma omp parallel
             {
-            rec = knapSack(f0.comeco,lim0, filmes);
-            }
-            #pragma omp task shared(rec2)
-            {
-            rec2 = knapSack(horario,lim, filmes);
+                #pragma omp task shared(rec)
+                {
+                rec = exaustiva(f0.comeco,lim0, filmes);
+                }
+                #pragma omp task shared(rec2)
+                {
+                rec2 = exaustiva(horario,lim, filmes);
 
+                }
             }
-        }
 
-            rec.horas += (f0.fim - f0.comeco);
-            rec.quant +=1;
-            rec = maximo(rec, rec2);
+                rec.horas += (f0.fim - f0.comeco);
+                rec.quant +=1;
+                rec = maximo(rec, rec2);
+    }
         
     
 
@@ -102,7 +103,7 @@ int main(int argc, char* argv[])
     }
 
     sort(filmes.begin(), filmes.end(), ordena);    
-    result resultado = knapSack(10000,limites ,filmes);
+    result resultado = exaustiva(10000,limites ,filmes);
 
 
     ///// FIM DO TIMER

@@ -1,3 +1,4 @@
+%%writefile dinamica2.cu
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 #include <thrust/sequence.h>
@@ -12,7 +13,6 @@
 
 using namespace std;
 
-
 struct UpdateFunctor
 {
     int* categories;
@@ -21,19 +21,19 @@ struct UpdateFunctor
     int* dp;
     int* L;
     int M;
-    int N;
 
     __host__ __device__
-    UpdateFunctor(int* _categories, int* _end_times, int* _start_times, int* _dp, int* _L, int _M, int _N)
-        : categories(_categories), end_times(_end_times), start_times(_start_times), dp(_dp), L(_L), M(_M), N(_N){}
+    UpdateFunctor(int* _categories, int* _end_times, int* _start_times, int* _dp, int* _L, int _M)
+        : categories(_categories), end_times(_end_times), start_times(_start_times), dp(_dp), L(_L), M(_M)
+    {
+    }
+
     __host__ __device__
-    int operator()(int idx) const
+    int operator()(int i) const
     {
         int max_count = 0;
-        int i = (idx / M) + 1;
-        int j = (idx % M) + 1;
-        if (i > 0 && j > 0 && i <= N && j <= M)
-        {
+        int j = threadIdx.x + blockIdx.x * blockDim.x;
+
         for (int k = 0; k < i; k++)
         {
             if (categories[k] == j && end_times[k] <= start_times[i] && dp[(k * (M + 1)) + j - 1] + 1 <= L[j - 1])
@@ -48,11 +48,6 @@ struct UpdateFunctor
 
         dp[(i * (M + 1)) + j] = max_count;
         return max_count;
-        }
-        else
-        {
-            return 0;
-        }
     }
 };
 int main()
@@ -89,6 +84,10 @@ int main()
             conta++;
         }
 
+    for (int i =0;i<N;i++){
+        cout << categories[i] << " " << end_times[i] << " " << start_times[i] << endl;
+    }
+
     // Transfer input data to device
     thrust::device_vector<int> d_categories(categories, categories + N);
     thrust::device_vector<int> d_end_times(end_times, end_times + N);
@@ -100,7 +99,7 @@ int main()
     thrust::fill(d_dp.begin(), d_dp.begin() + M + 1, 1);
     
     int numElements = ((N + 1) * (M + 1));
-    thrust::counting_iterator<int> first(0);
+    thrust::counting_iterator<int> first(10);
     thrust::counting_iterator<int> last = first + numElements;
 
     // // Launch the kernel and update the dp array
@@ -109,9 +108,9 @@ int main()
                            thrust::raw_pointer_cast(d_start_times.data()),
                            thrust::raw_pointer_cast(d_dp.data()),
                            thrust::raw_pointer_cast(d_L.data()),
-                           M,N);
+                           M);
 
-     thrust::transform(first, last,
+     thrust::transform(thrust::counting_iterator<int>(0), thrust::counting_iterator<int>(numElements),
                        d_dp.begin(), functor);
 
     // Transfer result back to host
@@ -121,10 +120,10 @@ int main()
     int max_count = 0;
     for (int j = 1; j <= M; j++) {
       max_count = max(max_count, dp[(N*(M+1)) + j]);
-    } 
-
+      //std::cout<< ((N*(M+1)) + j)<< std::endl;
+    }
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
-    std::cout << delta<< " , " << N<< " , " << M<< " , "<< 24 << "\n";
+    std::cout << delta<< " , " << N<< " , " << M<< " , "<< max_count << "\n";
     return 0;
 }
