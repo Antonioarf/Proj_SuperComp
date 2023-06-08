@@ -1,4 +1,4 @@
-%%writefile dinamica2.cu
+// %%writefile dinamica3.cu
 #include <thrust/device_vector.h>
 #include <thrust/host_vector.h>
 #include <thrust/sequence.h>
@@ -12,7 +12,6 @@
 #include <iostream>
 
 using namespace std;
-
 struct UpdateFunctor
 {
     int* categories;
@@ -52,7 +51,7 @@ struct UpdateFunctor
 };
 int main()
 {
-  auto before = std::chrono::high_resolution_clock::now();
+    auto before = std::chrono::high_resolution_clock::now();
 
     int N; // Number of elements in categories and end_times
     int M;  // Number of columns in dp array
@@ -60,11 +59,11 @@ int main()
     std::cin >> N >> M;
 
     // Input data
-    int categories[N] ;
-    int end_times[N] ;
-    int start_times[N] ;
-    int dp[(N + 1) * (M + 1)];
-    int L[M];
+    thrust::host_vector<int> categories(N) ;
+    thrust::host_vector<int> end_times(N) ;
+    thrust::host_vector<int> start_times(N) ;
+    thrust::host_vector<int> dp((N + 1) * (M + 1));
+    thrust::host_vector<int> L(M);
 
     int  conta = 0;
     int  lim   =0;
@@ -84,22 +83,18 @@ int main()
             conta++;
         }
 
-    for (int i =0;i<N;i++){
-        cout << categories[i] << " " << end_times[i] << " " << start_times[i] << endl;
-    }
-
     // Transfer input data to device
-    thrust::device_vector<int> d_categories(categories, categories + N);
-    thrust::device_vector<int> d_end_times(end_times, end_times + N);
-    thrust::device_vector<int> d_start_times(start_times, start_times + N);
-    thrust::device_vector<int> d_dp(dp, dp + (N + 1) * (M + 1));
-    thrust::device_vector<int> d_L(L, L + M);
+    thrust::device_vector<int> d_categories = categories;
+    thrust::device_vector<int> d_end_times = end_times;
+    thrust::device_vector<int> d_start_times = start_times;
+    thrust::device_vector<int> d_dp = dp;
+    thrust::device_vector<int> d_L = L;
 
 
     thrust::fill(d_dp.begin(), d_dp.begin() + M + 1, 1);
     
     int numElements = ((N + 1) * (M + 1));
-    thrust::counting_iterator<int> first(10);
+    thrust::counting_iterator<int> first(0);
     thrust::counting_iterator<int> last = first + numElements;
 
     // // Launch the kernel and update the dp array
@@ -114,7 +109,10 @@ int main()
                        d_dp.begin(), functor);
 
     // Transfer result back to host
-    thrust::copy(d_dp.begin(), d_dp.end(), dp);
+    dp=d_dp;
+
+    // Print the updated dp array
+
 
     // Print the updated dp array
     int max_count = 0;
@@ -122,6 +120,7 @@ int main()
       max_count = max(max_count, dp[(N*(M+1)) + j]);
       //std::cout<< ((N*(M+1)) + j)<< std::endl;
     }
+
     auto after = chrono::high_resolution_clock::now();
     auto delta = chrono::duration_cast<chrono::nanoseconds>(after-before).count();
     std::cout << delta<< " , " << N<< " , " << M<< " , "<< max_count << "\n";
